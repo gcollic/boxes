@@ -276,7 +276,10 @@ class Context:
         self._m *= Affine.scale(sx, sy)
 
     def rotate(self, r):
-        self._m *= Affine.rotation(180 * r / math.pi)
+        self.rotate_in_deg(180 * r / math.pi)
+
+    def rotate_in_deg(self, r):
+        self._m *= Affine.rotation(r)
 
     def set_line_width(self, lw):
         self._lw = lw

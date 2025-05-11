@@ -14,7 +14,7 @@ class Keypad(Boxes, Keyboard):
     description = "Note that top layers use a different material thickness according to the top1_thickness and top2_thickness (if enabled)."
 
     ui_group = 'Box'
-    btn_size = 15.6
+    btn_size = Keyboard.SWITCH_CASE_SIZE
     space_between_btn = 4
     box_padding = 10
     triangle = 25.0

@@ -8,7 +8,7 @@ from .keyboard import Keyboard
 class Atreus21(Boxes, Keyboard):
     """Generator for a split atreus keyboard."""
     ui_group = 'Misc'
-    btn_size = 15.6
+    btn_size = Keyboard.SWITCH_CASE_SIZE
     half_btn = btn_size / 2
     border = 6
 
@@ -57,17 +57,6 @@ class Atreus21(Boxes, Keyboard):
         for x in [-margin, case_x + margin]:
             for y in [-margin, case_y + margin]:
                 self.hole(x, y, d=diameter)
-
-    def micro(self):
-        x = 17.9
-        y = 33
-        b = self.border
-        case_x, case_y = self._case_x_y()
-        self.rectangularHole(
-            x * -.5 + case_x + b * .5,
-            y * -.5 + case_y + b * .5,
-            x, y
-        )
 
     @restore
     def rim(self):

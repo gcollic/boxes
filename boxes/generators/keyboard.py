@@ -16,7 +16,7 @@
 import argparse
 import re
 
-from boxes import boolarg
+from boxes import boolarg, restore
 
 
 class Keyboard:
@@ -180,6 +180,19 @@ class Keyboard:
 
         total_width = len(columns_definition) * spacing
         self.moveTo(-1 * total_width)
+
+    def apply_callback_on_keys(self, cb, keys):
+        max_y = max(y for (_, y, _) in keys)
+        start_point_margin = self.STANDARD_KEY_SPACING / 2
+        self.moveTo(-start_point_margin, start_point_margin)
+        for (x, y, r) in keys:
+            self.ctx.save()
+            self.moveTo(x * self.STANDARD_KEY_SPACING, (max_y-y) * self.STANDARD_KEY_SPACING)
+            if(r):
+                self.ctx.rotate_in_deg(-r)
+            self.moveTo(start_point_margin, -start_point_margin)
+            cb()
+            self.ctx.restore()
 
     def outer_hole(self, radius=2, centered=True):
         """
